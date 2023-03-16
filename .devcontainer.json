@@ -13,13 +13,19 @@
 		}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
 	},
 	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
 	"mounts": [
 		{
-			"source": "devcontainer-cargo-cache-${devcontainerId}",
+			"source": "devcontainer-cargo-cache", // using shared ${devcontainerId}
 			"target": "/usr/local/cargo",
+			"type": "volume"
+		},
+		{
+			"source": "devcontainer-home-cache", // using shared ${devcontainerId}
+			"target": "/home/${containerUser}/.cache",
 			"type": "volume"
 		}
 	]
