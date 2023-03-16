@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.1.0/css/xterm.css" integrity="sha256-El9CWXN7actYUCoP4f6ZNUC4E/TzNRSBZSvGRY87Grs=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/xterm@5.1.0/lib/xterm.js" integrity="sha256-URIQNL+a6f+ptfTTV1d7owrpGnC69zN2/3akN8l2yOg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-attach@0.8.0/lib/xterm-addon-attach.js" integrity="sha256-zjNztoOq+fLvN8le9CcRXu0sAVCDjHk25eaGG8hMJQQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-search@0.11.0/lib/xterm-addon-search.js" integrity="sha256-2m+sWcIjS1RAzcdCyKE7C2ZyPV1Bg3YSDQCG6MFbUW4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.js" integrity="sha256-A0JddbZMtvFiEh4yr+D/uJx4qWNCP5MrlWVza3DTyrY=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.js" integrity="sha256-h1+Y0EmvG6kqJx4Dw8YCkT1M1WIJemOxIt3cLOpy4C8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="terminal"></div>
+    <script >
+
+ 
+
+        const terminal = new Terminal();
+
+        const socket = new WebSocket('ws://localhost:2376/containers/jumpbox/attach/ws');
+
+        const fitAddon = new FitAddon.FitAddon();
+        const searchAddon = new SearchAddon.SearchAddon();
+        const webLinksAddon = new WebLinksAddon.WebLinksAddon();
+        
+        
+        const attachAddon = new AttachAddon.AttachAddon(socket);
+
+        
+        terminal.loadAddon(attachAddon);
+
+        terminal.loadAddon(fitAddon);
+        terminal.loadAddon(searchAddon);
+        terminal.loadAddon(webLinksAddon);
+
+
+        terminal.open(document.getElementById('terminal'));
+        fitAddon.fit();
+        terminal.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+    </script>
+</body>
+
+</html>

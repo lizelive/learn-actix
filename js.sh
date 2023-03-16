@@ -1,0 +1,2 @@
+wget https://cdn.jsdelivr.net/combine/npm/xterm@5.1.0,npm/xterm-addon-attach@0.8.0,npm/xterm-addon-search@0.11.0,npm/xterm-addon-fit@0.7.0,npm/xterm-addon-web-links@0.8.0 -O script.js
+wget https://cdn.jsdelivr.net/combine/npm/xterm@5.1.0/css/xterm.min.css,npm/water.css@2.1.1/out/dark.min.css -O style.css
