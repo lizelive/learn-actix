@@ -1,0 +1,2 @@
+https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.base.schema.json
+https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json

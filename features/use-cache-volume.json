@@ -1,0 +1,14 @@
+{
+    "remoteEnv": {
+		"CARGO_HOME": "/usr/local/cargo",
+		"CACHE_HOME": "/home/${containerUser}/.cache"
+	},
+    "mounts": [
+        {
+            "source": "cie-home-cache-${containerUid}",
+            "target": "/home/${containerUser}/.cache",
+            "type": "volume"
+        }
+    ]
+
+}

@@ -1,1 +1,4 @@
 # codeserver (bin)
+
+npm
+podman
