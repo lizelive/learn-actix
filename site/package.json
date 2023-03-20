@@ -1,7 +1,6 @@
 {
   "name": "learn-actix",
   "dependencies": {
-    "@devcontainers/cli": "^0.34.0",
     "water.css": "^2.1.1",
     "xterm": "^5.1.0",
     "xterm-addon-attach": "^0.8.0",
@@ -10,6 +9,11 @@
     "xterm-addon-web-links": "^0.8.0"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.5.2"
+    "@devcontainers/cli": "^0.34.0",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
+    "browserify": "^17.0.0"
+  },
+  "scripts": {
+    "devcontainers": "devcontainers"
   }
 }

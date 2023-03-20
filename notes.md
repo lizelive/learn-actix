@@ -2,3 +2,5 @@ https://learn.microsoft.com/en-us/azure/machine-learning/how-to-interactive-jobs
 
 the sdk v2 python is https://learn.microsoft.com/en-us/python/api/azure-ai-ml/?view=azure-python
 
+docker uri <docker://docker.io/fedora:latest>
+<docker://docker.io/nixos/nix:latest>
