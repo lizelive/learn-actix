@@ -392,10 +392,12 @@
 					"description": "User environment probe to run. The default is \"loginInteractiveShell\"."
 				},
 				"hostRequirements": {
+					"title": "Hardware Requirements",
 					"type": "object",
 					"description": "Host hardware requirements.",
 					"properties": {
 						"cpus": {
+							"title": "CPUs",
 							"type": "integer",
 							"minimum": 1,
 							"description": "Number of required CPUs."
@@ -413,15 +415,19 @@
 						"gpu": {
 							"oneOf": [
 								{
-									"type" : "boolean",
-									"description": "Indicates whether a GPU is required."
+									"title": "GPU Required",
+									"type": "boolean",
+									"const": true,
+									"description": "Indicates a GPU is required."
 								},
 								{
+									"title": "GPU Optional",
 									"type": "string",
-									"value": "optional",
+									"const": "optional",
 									"description": "\"optional\" indicates that a GPU is optional."
 								},
 								{
+									"title": "GPU Required Detailed",
 									"type": "object",
 									"properties": {
 										"cores": {
@@ -457,18 +463,20 @@
 			"type": "object",
 			"properties": {
 				"appPort": {
-					"type": [
-						"integer",
-						"string",
-						"array"
+					"title": "App Port(s)",
+					"oneOf": [
+						{
+							"title": "One",
+							"$ref": "#/definitions/AppPort"
+						},
+						{
+							"title": "Multiple",
+							"items": {
+								"$ref": "#/definitions/AppPort"
+							}
+						}
 					],
-					"description": "Application ports that are exposed by the container. This can be a single port or an array of ports. Each port can be a number or a string. A number is mapped to the same port on the host. A string is passed to Docker unchanged and can be used to map ports differently, e.g. \"8000:8010\".",
-					"items": {
-						"type": [
-							"integer",
-							"string"
-						]
-					}
+					"description": "Application ports that are exposed by the container. This can be a single port or an array of ports. Each port can be a number or a string. A number is mapped to the same port on the host. A string is passed to Docker unchanged and can be used to map ports differently, e.g. \"8000:8010\"."
 				},
 				"runArgs": {
 					"type": "array",
@@ -653,6 +661,24 @@
 				"workspaceFolder"
 			]
 		},
+		"AppPort": {
+			"title": "app port",
+			"type": "object",
+			"oneOf": [
+				{
+					"title": "app port same on host",
+					"type": "integer",
+					"description": "A number is mapped to the same port on the host."
+				},
+				{
+					"title": "app port docker spec",
+					"type": "string",
+					"description": "passed to Docker unchanged and can be used to map ports differently, e.g. \"8000:8010\".",
+					"example": "8000:8010"
+				}
+			],
+			"description": "Application ports that are exposed by the container. This can be a single port or an array of ports. Each port can be a number or a string. A number is mapped to the same port on the host. A string is passed to Docker unchanged and can be used to map ports differently, e.g. \"8000:8010\"."
+		},
 		"Mount": {
 			"type": "object",
 			"properties": {
@@ -683,30 +709,13 @@
 	},
 	"oneOf": [
 		{
+			"title": "Image devcontainer",
 			"allOf": [
 				{
-					"oneOf": [
-						{
-							"allOf": [
-								{
-									"oneOf": [
-										{
-											"$ref": "#/definitions/dockerfileContainer"
-										},
-										{
-											"$ref": "#/definitions/imageContainer"
-										}
-									]
-								},
-								{
-									"$ref": "#/definitions/nonComposeBase"
-								}
-							]
-						},
-						{
-							"$ref": "#/definitions/composeContainer"
-						}
-					]
+					"$ref": "#/definitions/imageContainer"
+				},
+				{
+					"$ref": "#/definitions/nonComposeBase"
 				},
 				{
 					"$ref": "#/definitions/devContainerCommon"
@@ -714,9 +723,18 @@
 			]
 		},
 		{
-			"type": "object",
-			"$ref": "#/definitions/devContainerCommon",
-			"additionalProperties": false
+			"title": "Build devcontainer",
+			"allOf": [
+				{
+					"$ref": "#/definitions/dockerfileContainer"
+				},
+				{
+					"$ref": "#/definitions/nonComposeBase"
+				},
+				{
+					"$ref": "#/definitions/devContainerCommon"
+				}
+			]
 		}
 	],
 	"unevaluatedProperties": false

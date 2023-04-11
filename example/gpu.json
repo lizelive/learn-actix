@@ -1,0 +1,9 @@
+
+{
+    "$schema": "../schema/devContainer.base.schema.json",
+	"image": "mcr.microsoft.com/devcontainers/rust:0-1-bullseye",
+	"hostRequirements": {
+		"gpu": true
+	},
+	"appPort": 3400
+}
