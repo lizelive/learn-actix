@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Hashable Value",
+    "id": "https://schema.qhpea.org/hashable-value.json",
+    "oneOf": [
+        {
+            "title": "Null",
+            "description": "Nothing here",
+            "type": "null"
+        },
+        {
+            "title": "Boolean",
+            "type": "boolean"
+        },
+        {
+            "title": "Integer",
+            "type": "integer"
+        },
+        {
+            "title": "String",
+            "type": "string"
+        },
+        {
+            "title": "Array",
+            "type": "array",
+            "items": {
+                "$ref": "#"
+            }
+        },
+        {
+            "title": "Object",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#"
+            }
+        }
+    ]
+}

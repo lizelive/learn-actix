@@ -1,0 +1,28 @@
+{
+	"name": "Rust",
+	"image": "mcr.microsoft.com/devcontainers/rust:0-1-bullseye",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"GitHub.copilot"
+			]
+		}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
+		"ghcr.io/devcontainers/features/node:1": {}
+	},
+	"mounts": [
+		{
+			"source": "devcontainer-cargo-cache",
+			"target": "/usr/local/cargo",
+			"type": "volume"
+		},
+		{
+			"source": "devcontainer-home-cache",
+			"target": "/home/${containerUser}/.cache",
+			"type": "volume"
+		}
+	]
+}
